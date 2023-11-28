@@ -1,4 +1,7 @@
 export const PATHS = {
+  SYSTEM: 'system',
   AUTH: 'auth',
-  LOGIN: 'login',
+  USER: 'user',
+  RESTAURANTS: 'restaurants',
+  PRODUCTS: 'products',
 };
