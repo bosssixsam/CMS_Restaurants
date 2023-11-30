@@ -6,44 +6,29 @@ import {
   UpdateDateColumn,
   ManyToMany,
   OneToMany,
+  DeleteDateColumn,
 } from 'typeorm';
 import { Role } from 'modules/role/entities';
 
 @Entity()
-export class User {
+export class Permission {
   @PrimaryGeneratedColumn()
   id: number;
-
-  @Column({
-    nullable: true,
-    default: null,
-  })
-  avatar: string;
 
   @Column({ length: 500 })
   name: string;
 
-  @Column('varchar')
-  username: string;
-
-  @Column('varchar')
-  email: string;
-
-  @Column('varchar')
-  password: string;
-
-  @Column({
-    type: 'array',
-    nullable: true,
+  @Column('varchar', {
+    nullable: false,
   })
-  roles!: number[];
-
-  @Column('boolean', { default: true })
-  isActive: boolean;
+  key: string;
 
   @CreateDateColumn()
   created_at: Date;
 
   @UpdateDateColumn()
   update_at: Date;
+
+  @DeleteDateColumn()
+  delete_at: Date;
 }
