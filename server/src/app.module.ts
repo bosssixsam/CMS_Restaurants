@@ -13,6 +13,7 @@ import { AppController } from './app.controller';
 
 import { AppService } from './app.service';
 import { UsersModule } from 'modules/users/users.module';
+import { DeparmentModule } from 'modules/department/department.module';
 
 @Module({
   imports: [
@@ -30,8 +31,9 @@ import { UsersModule } from 'modules/users/users.module';
       inject: [ConfigService],
     }),
     ShareModule,
-    UsersModule,
     // AuthModule,
+    UsersModule,
+    DeparmentModule,
   ],
   controllers: [AppController],
   providers: [AppService],

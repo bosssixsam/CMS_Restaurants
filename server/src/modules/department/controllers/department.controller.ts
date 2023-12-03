@@ -16,10 +16,11 @@ import { AuthGuard } from 'modules/shared';
 import { DepartmentServices } from 'modules/department/services';
 
 import { ErrorPipeHandler } from 'modules/shared/utils';
+import { CreateDepartmentDto } from 'modules/department/dto';
 
 @Controller('department')
 export class DepartmentControllers {
-  constructor(private readonly usersService: DepartmentServices) {}
+  constructor(private readonly departmentService: DepartmentServices) {}
 
   @Post('/create')
   @UsePipes(
@@ -31,7 +32,7 @@ export class DepartmentControllers {
       },
     }),
   )
-  create(@Body() department: any) {
+  create(@Body() department: CreateDepartmentDto) {
     // return this.usersService.create(createUserDto);
   }
 }
