@@ -4,11 +4,8 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  ManyToMany,
-  OneToMany,
   DeleteDateColumn,
 } from 'typeorm';
-import { Role } from 'modules/role/entities';
 
 @Entity()
 export class Permission {
@@ -18,17 +15,18 @@ export class Permission {
   @Column({ length: 500 })
   name: string;
 
-  @Column('varchar', {
-    nullable: false,
+  @Column({
+    nullable: true,
   })
-  key: string;
+  created_at: string;
 
-  @CreateDateColumn()
-  created_at: Date;
+  @Column({
+    nullable: true,
+  })
+  update_at: string;
 
-  @UpdateDateColumn()
-  update_at: Date;
-
-  @DeleteDateColumn()
-  delete_at: Date;
+  @Column({
+    nullable: true,
+  })
+  delete_at: string;
 }

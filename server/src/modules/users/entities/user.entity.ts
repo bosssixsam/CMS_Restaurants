@@ -4,10 +4,8 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
-  ManyToMany,
-  OneToMany,
 } from 'typeorm';
-import { Role } from 'modules/role/entities';
+// import { Role } from 'modules/role/entities';
 
 @Entity()
 export class User {
@@ -33,10 +31,11 @@ export class User {
   password: string;
 
   @Column({
-    type: 'array',
+    type: 'int',
+    array: true,
     nullable: true,
   })
-  roles!: number[];
+  roles!: number;
 
   @Column('boolean', { default: true })
   isActive: boolean;

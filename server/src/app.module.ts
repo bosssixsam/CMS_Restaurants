@@ -12,6 +12,7 @@ import { ShareModule } from './modules/shared/share.module';
 import { AppController } from './app.controller';
 
 import { AppService } from './app.service';
+import { UsersModule } from 'modules/users/users.module';
 
 @Module({
   imports: [
@@ -29,8 +30,8 @@ import { AppService } from './app.service';
       inject: [ConfigService],
     }),
     ShareModule,
+    UsersModule,
     // AuthModule,
-    // UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
