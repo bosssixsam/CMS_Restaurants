@@ -42,8 +42,9 @@ export class ExceptionsFilter extends BaseExceptionFilter {
         this.logger.error('UnhandledException', exception);
       }
     } else {
+      // console.log('exception', exception.response);
       response.status(status).json({
-        code: exception.response.code ? exception.response.code : -1,
+        code: exception.status ? exception.status : -1,
         message: exception.message,
         data: null,
       });

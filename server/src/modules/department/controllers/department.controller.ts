@@ -5,18 +5,20 @@ import {
   Body,
   Patch,
   Param,
+  UseFilters,
   Delete,
   UseGuards,
   UsePipes,
   ValidationPipe,
 } from '@nestjs/common';
 
-import { AuthGuard } from 'modules/shared';
+import { CreateDepartmentDto } from 'modules/department/dto';
+
+import { AuthGuard, ExceptionsFilter } from 'modules/shared';
 
 import { DepartmentServices } from 'modules/department/services';
 
 import { ErrorPipeHandler } from 'modules/shared/utils';
-import { CreateDepartmentDto } from 'modules/department/dto';
 
 @Controller('department')
 export class DepartmentControllers {
@@ -33,6 +35,12 @@ export class DepartmentControllers {
     }),
   )
   create(@Body() department: CreateDepartmentDto) {
-    // return this.usersService.create(createUserDto);
+    return this.departmentService.create(department);
+  }
+
+  @Patch('update/:id')
+  @UseFilters(ExceptionsFilter)
+  update(@Param('id') id: string, @Body() updateUserDto: CreateDepartmentDto) {
+    return this.departmentService.update(id, updateUserDto);
   }
 }
