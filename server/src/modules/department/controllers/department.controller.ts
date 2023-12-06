@@ -43,4 +43,8 @@ export class DepartmentControllers {
   update(@Param('id') id: string, @Body() updateUserDto: CreateDepartmentDto) {
     return this.departmentService.update(id, updateUserDto);
   }
+
+  @Patch('delete/:id')
+  @UseFilters(ExceptionsFilter)
+  delete(@Param('id') id: string) {}
 }

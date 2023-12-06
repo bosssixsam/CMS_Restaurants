@@ -17,6 +17,7 @@ export class DepartmentServices {
     @InjectRepository(Department)
     private readonly deparmentRepo: Repository<Department>,
   ) {}
+
   async create(createDepartmentDto: CreateDepartmentDto): Promise<Object> {
     try {
       const result = await this.deparmentRepo.save(createDepartmentDto);
@@ -28,6 +29,7 @@ export class DepartmentServices {
       throw new HttpException('Creation failed', HttpStatus.BAD_REQUEST);
     }
   }
+
   async update(
     id: string,
     createDepartmentDto: CreateDepartmentDto,
@@ -52,6 +54,31 @@ export class DepartmentServices {
         }
       }
     } catch (error: any) {
+      throw error;
+    }
+  }
+
+  async delete(id: string): Promise<any> {
+    if (Number.isNaN(parseInt(id))) {
+      throw HTTPS_ERRORS.ID_TYPE;
+    }
+    try {
+      const validateID = await this.deparmentRepo.findOne({
+        where: {
+          id: parseInt(id),
+        },
+      });
+
+      if (validateID === null) {
+        throw HTTPS_ERRORS.ID_NOT_FOUND;
+      } else {
+        const result = await this.deparmentRepo.delete(id);
+
+        if (result) {
+          return successUpdateFormat('Department deleted');
+        }
+      }
+    } catch (error) {
       throw error;
     }
   }
