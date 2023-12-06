@@ -11,7 +11,7 @@ export interface IDepartment {
   last_page: number;
   total_page: number;
   total: number;
-  prevPage: number;
-  nextPage: number;
+  prevPage: boolean;
+  nextPage: boolean;
   data: Array<Department>;
 }
