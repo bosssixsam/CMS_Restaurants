@@ -4,12 +4,15 @@ import { Repository } from 'typeorm';
 import { HttpException, HttpStatus } from '@nestjs/common';
 
 import { Department } from 'entities';
-
 import { CreateDepartmentDto } from 'modules/department/dto';
 
+import {
+  IDepartment,
+  IDepartmentParams,
+} from 'modules/department/department.interface';
 import { HTTPS_ERRORS } from 'modules/department/constant';
 
-import { successUpdateFormat } from 'modules/shared/utils';
+import { paginationFormat, successUpdateFormat } from 'modules/shared/utils';
 
 @Injectable()
 export class DepartmentServices {
@@ -17,6 +20,38 @@ export class DepartmentServices {
     @InjectRepository(Department)
     private readonly deparmentRepo: Repository<Department>,
   ) {}
+
+  async get(queryparams: IDepartmentParams): Promise<Object> {
+    const { limit, page, skip } = paginationFormat({ ...queryparams });
+
+    try {
+      let query = this.deparmentRepo.createQueryBuilder('department').select();
+
+      if (queryparams.name) {
+        query = query.where('department.name LIKE :pattern', {
+          pattern: `%${queryparams.name}%`,
+        });
+      }
+
+      const list = query.limit(limit).skip(skip);
+      const departments = await list.getMany();
+      const totalDepartments = await list.getCount();
+      const totalPage = Math.ceil(totalDepartments / limit);
+
+      return successUpdateFormat('Department created', 200, {
+        page,
+        first_page: 1,
+        last_page: totalPage,
+        total_page: totalPage,
+        nextPage: page > 1,
+        prevPage: page < totalPage,
+        total: totalDepartments,
+        list: departments,
+      });
+    } catch (error) {
+      throw error;
+    }
+  }
 
   async create(createDepartmentDto: CreateDepartmentDto): Promise<Object> {
     try {

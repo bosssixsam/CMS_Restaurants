@@ -10,11 +10,16 @@ import {
   UseGuards,
   UsePipes,
   ValidationPipe,
+  Req,
+  Query,
 } from '@nestjs/common';
+import { Request } from 'express';
 
 import { CreateDepartmentDto } from 'modules/department/dto';
 
 import { AuthGuard, ExceptionsFilter } from 'modules/shared';
+
+import { IDepartmentParams } from 'modules/department/department.interface';
 
 import { DepartmentServices } from 'modules/department/services';
 
@@ -23,6 +28,12 @@ import { ErrorPipeHandler } from 'modules/shared/utils';
 @Controller('department')
 export class DepartmentControllers {
   constructor(private readonly departmentService: DepartmentServices) {}
+
+  @Get()
+  @UseFilters(ExceptionsFilter)
+  get(@Query() query: IDepartmentParams) {
+    return this.departmentService.get(query);
+  }
 
   @Post('/create')
   @UsePipes(
@@ -46,5 +57,7 @@ export class DepartmentControllers {
 
   @Patch('delete/:id')
   @UseFilters(ExceptionsFilter)
-  delete(@Param('id') id: string) {}
+  delete(@Param('id') id: string) {
+    return this.departmentService.delete;
+  }
 }
