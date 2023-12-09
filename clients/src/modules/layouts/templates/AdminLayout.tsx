@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 
-import { NotifyContext, useAppDispatch } from "@/shared";
+import { NotifyContext, cn, useAppDispatch } from "@/shared";
 
 import { SideBar } from "@/modules/layouts";
 
@@ -18,7 +18,7 @@ const AdminLayout = ({ children }: IAdminLayout) => {
   const { api } = useContext(NotifyContext);
 
   useEffect(() => {
-    getUser();
+    // getUser();
     function handleResize() {
       setDemension(getWindowDimensions());
     }
@@ -28,27 +28,27 @@ const AdminLayout = ({ children }: IAdminLayout) => {
 
   // --- handling data ----
 
-  const getUser = async () => {
-    try {
-      const result = await USER_SERVICE.getUserProfile();
+  // const getUser = async () => {
+  //   try {
+  //     const result = await USER_SERVICE.getUserProfile();
 
-      if (result.data) {
-        dispatch(userAction.setUser(result.data.data));
-      }
-    } catch (error: any) {
-      api.error({
-        message: error.message,
-      });
-    }
-  };
+  //     if (result.data) {
+  //       dispatch(userAction.setUser(result.data.data));
+  //     }
+  //   } catch (error: any) {
+  //     api.error({
+  //       message: error.message,
+  //     });
+  //   }
+  // };
 
   // --- handling component ---
 
   return (
     <div
-      className={`min-h-screen bg-bg_grey flex transition-all duration-150 delay-75 ease-linear ${
-        demension.width > 1000 ? "pl-[var(--sidebar-width)]" : "pl-0"
-      }`}
+      className={cn("min-h-screen bg-background-grey flex transition-all duration-150 delay-75 ease-linear pl-0", {
+        "pl-[var(--sidebar-width)]": demension.width > 1000,
+      })}
     >
       <SideBar show={demension.width > 1000}>
         <div className="space-y-[12px]">
@@ -62,6 +62,23 @@ const AdminLayout = ({ children }: IAdminLayout) => {
 
       <main className="w-full">{children}</main>
     </div>
+    // <div
+    //   className={`min-h-screen bg-background-grey flex transition-all duration-150 delay-75 ease-linear ${
+    //     demension.width > 1000 ? "pl-[var(--sidebar-width)]" : "pl-0"
+    //   }`}
+    // >
+    //   <SideBar show={demension.width > 1000}>
+    //     <div className="space-y-[12px]">
+    //       {SIDEBAR_ITEMS.map((item, index) => {
+    //         return (
+    //           <SideBar.Item key={index} label={item.label} children={item.children} icon={item.icon} herf={item.herf} />
+    //         );
+    //       })}
+    //     </div>
+    //   </SideBar>
+
+    //   <main className="w-full">{children}</main>
+    // </div>
   );
 };
 

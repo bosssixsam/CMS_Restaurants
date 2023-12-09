@@ -53,6 +53,18 @@ module.exports = {
       padding: {
         head: "var(--head-height)",
       },
+      colors: {
+        background: {
+          grey: "var(--background-grey)",
+        },
+        base: {
+          primary: "var(--base-primary)",
+          secondary: "var(--base-secondary)",
+          text: {
+            primary: "var(--base-text-primary)",
+          },
+        },
+      },
     },
   },
   // plugins: [require("@tailwindcss/line-clamp")],

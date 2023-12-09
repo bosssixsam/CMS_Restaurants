@@ -1,13 +1,13 @@
 .ant-select {
   &:hover {
     .ant-select-selector {
-      @apply !border-main;
+      /* @apply !border-main; */
     }
   }
 }
 
 .ant-select-focused {
   .ant-select-selector {
-    @apply !border-main !shadow-none;
+    /* @apply !border-main !shadow-none; */
   }
 }
