@@ -7,16 +7,16 @@ module.exports = {
     // "/constant/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    colors: {
-      black: "#000000",
-      bg_grey: "#f3f4f6",
-      white: "#ffffff",
-      black2: "#505564",
-      main: "#f9660c",
-      blue: "#2563eb",
-      green: "#22c55e",
-      green_hover: "#4ade80",
-    },
+    // colors: {
+    //   black: "#000000",
+    //   bg_grey: "#f3f4f6",
+    //   white: "#ffffff",
+    //   black2: "#505564",
+    //   main: "#f9660c",
+    //   blue: "#2563eb",
+    //   green: "#22c55e",
+    //   green_hover: "#4ade80",
+    // },
     fontFamily: {
       Inter: ["Inter", "sans-serif"],
     },
