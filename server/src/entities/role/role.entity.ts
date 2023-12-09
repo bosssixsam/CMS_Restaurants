@@ -10,7 +10,7 @@ import {
   ManyToOne,
 } from 'typeorm';
 
-import { Department } from 'modules/department/entities';
+import { Department } from 'entities';
 
 @Entity()
 export class Role {
@@ -20,8 +20,8 @@ export class Role {
   @Column({ length: 500 })
   name: string;
 
-  @Column('array')
-  permission!: number[];
+  @Column({ type: 'int', array: true, nullable: true })
+  permission!: number;
 
   @ManyToOne(() => Department, (department) => department.id)
   department_id: number;

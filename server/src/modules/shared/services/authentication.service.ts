@@ -4,7 +4,7 @@ import { ConfigService } from '@nestjs/config';
 
 // import { CONFIG } from 'src/config';
 
-import { IAuthenticationPayload } from 'src/modules/shared/interfaces';
+import { IAuthenticationPayload } from 'modules/shared/interfaces';
 
 @Injectable()
 export class AuthenticationService {

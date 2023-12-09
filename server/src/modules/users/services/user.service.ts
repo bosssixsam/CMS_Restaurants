@@ -1,15 +1,53 @@
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { Injectable, ValidationPipe } from '@nestjs/common';
-// import { CreateUserDto, UpdateUserDto } from 'src/modules/users/dto';
+
+import { User } from 'modules/users/entities';
+import { CreateUserDto } from 'modules/users/dto';
+
+import { HTTPS_ERRORS } from 'modules/users/constant';
 
 @Injectable()
 export class UsersService {
-  create(createUserDto: any) {
-    console.log('test', createUserDto);
+  constructor(
+    @InjectRepository(User)
+    private readonly userRepo: Repository<User>,
+  ) {}
+
+  async create(createUserDto: CreateUserDto) {
+    // try {
+    //   // const exist = this.userRepo
+    //   //   .createQueryBuilder('user')
+    //   //   .where('user.username = :username', {
+    //   //     username: createUserDto.username,
+    //   //   })
+    //   //   .orWhere('user.email = :email', { email: createUserDto.email })
+    //   //   .getExists()
+    //   //   .then((value) => {
+    //   //     console.log('basfdsafdasfads', value);
+    //   //   })
+    //   //   .catch();
+    // } catch (error) {}
 
     try {
-    } catch (error) {}
+      const exist = await this.userRepo
+        .createQueryBuilder('user')
+        .where('user.username = :username', {
+          username: createUserDto.username,
+        })
+        // .orWhere('user.email = :email', { email: createUserDto.email })
+        .getExists();
 
-    return 'This action adds a new user';
+      if (exist) {
+        throw HTTPS_ERRORS.USER_EXIST;
+      }
+
+      // this.userRepo.save()
+
+      return 'This action adds a new user';
+    } catch (error) {
+      throw error;
+    }
   }
 
   findAll() {
