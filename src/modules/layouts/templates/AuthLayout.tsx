@@ -2,7 +2,7 @@ export interface IAuthLayout {
   className?: string;
 }
 
-const AuthLayout = (props: any) => {
+const AuthLayout = () => {
   return <div>AuthLayout</div>;
 };
 

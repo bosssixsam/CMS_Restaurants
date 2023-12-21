@@ -1,9 +1,6 @@
-import React from "react";
 import { useParams } from "react-router";
 
-type Props = {};
-
-const Test = (props: Props) => {
+const Test = () => {
   const params = useParams();
 
   console.log("params", params);

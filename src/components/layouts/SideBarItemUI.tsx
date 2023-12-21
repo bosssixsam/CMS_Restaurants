@@ -1,5 +1,3 @@
-import React from "react";
-
 export interface ISideBarItemUI {
   className?: string;
   label: string;

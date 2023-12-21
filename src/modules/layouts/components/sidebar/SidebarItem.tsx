@@ -18,7 +18,7 @@ export interface ISideBarItem {
   }>;
 }
 
-const SidebarItem = ({ className = "", herf, permission, icon, label, children }: ISideBarItem) => {
+const SidebarItem = ({ className = "", herf, icon, label, children }: ISideBarItem) => {
   const location = useLocation();
   const Icon = icon ? SideBarIcon[icon as keyof typeof SideBarIcon] : undefined;
   const [open, setOpen] = useState<boolean>(false);

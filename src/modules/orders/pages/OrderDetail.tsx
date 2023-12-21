@@ -1,8 +1,4 @@
-import React from "react";
-
-type Props = {};
-
-const OrderDetail = (props: Props) => {
+const OrderDetail = () => {
   return <div>OrderDetail</div>;
 };
 
