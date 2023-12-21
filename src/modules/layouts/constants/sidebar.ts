@@ -1,6 +1,6 @@
 import { SITE_URL } from "@/shared";
 
-export const SIDEBAR_ITEMS = [
+export const SIDEBAR_ITEMS: any = [
   {
     label: "Quản lý nhà hàng",
     icon: "UsersIcon",

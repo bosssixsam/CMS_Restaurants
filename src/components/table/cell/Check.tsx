@@ -2,7 +2,7 @@ export interface CellCheckProps {
   className?: string;
 }
 
-const CellCheck = ({ className }: CellCheckProps) => {
+const CellCheck = ({}: CellCheckProps) => {
   return <div>CellCheck</div>;
 };
 

@@ -1,8 +1,4 @@
-import React from "react";
-
-type Props = {};
-
-const EditableForm = (props: Props) => {
+const EditableForm = () => {
   return <div>EditableForm</div>;
 };
 

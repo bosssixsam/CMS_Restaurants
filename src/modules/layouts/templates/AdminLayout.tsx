@@ -52,9 +52,15 @@ const AdminLayout = ({ children }: IAdminLayout) => {
     >
       <SideBar show={demension.width > 1000}>
         <div className="space-y-[12px]">
-          {SIDEBAR_ITEMS.map((item, index) => {
+          {SIDEBAR_ITEMS.map((item: any, index: any) => {
             return (
-              <SideBar.Item key={index} label={item.label} children={item.children} icon={item.icon} herf={item.herf} />
+              <SideBar.Item
+                key={index}
+                label={item.label}
+                children={item.children}
+                icon={item.icon}
+                herf={item.herf! ?? ""}
+              />
             );
           })}
         </div>

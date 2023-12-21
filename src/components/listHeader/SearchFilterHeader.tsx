@@ -9,7 +9,7 @@ export interface SearchFilterHeaderProps {
   onSearch: (e: any) => void;
 }
 
-const SearchFilterHeader = ({ className, toggle, title, onToggle, onAddNew, onSearch }: SearchFilterHeaderProps) => {
+const SearchFilterHeader = ({ className, title }: SearchFilterHeaderProps) => {
   return (
     <div className={cn("[&>div]:py-[20px]", className)}>
       <div className="flex justify-between items-center">
